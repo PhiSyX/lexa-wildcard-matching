@@ -1,0 +1,10 @@
+[package]
+name = "lexa-wildcard-matching"
+version = "0.1.0"
+edition = "2021"
+license = "MPL-2.0"
+repository = "https://github.com/PhiSyX/lexa-wildcard-matching"
+description = "Correspondance de caractères génériques sur les chaînes de caractères."
+
+[dependencies]
+regex = { version = "^1.9" }
