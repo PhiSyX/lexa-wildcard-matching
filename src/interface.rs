@@ -12,7 +12,8 @@
 // Trait //
 // ----- //
 
-pub trait WildcardMatching: AsRef<str> {
+pub trait WildcardMatching: AsRef<str>
+{
 	/// Compare deux chaînes de caractères avec l'utilisation de caractères
 	/// génériques.
 	///
@@ -24,15 +25,15 @@ pub trait WildcardMatching: AsRef<str> {
 	///
 	/// wm = Wildcard Matching
 	#[inline]
-	fn iswm(&self, pattern: &str) -> bool {
-		let build_regexp = regex::escape(pattern)
-			.replace(r"\?", ".")
-			.replace(r"\*", ".*");
+	fn iswm(&self, pattern: &str) -> bool
+	{
+		let build_regexp = regex::escape(pattern).replace(r"\?", ".").replace(r"\*", ".*");
 
 		let regexp = regex::RegexBuilder::new(&build_regexp)
 			.case_insensitive(true)
 			.build()
-			.unwrap();
+			.unwrap()
+		;
 
 		regexp.is_match(self.as_ref())
 	}
@@ -49,15 +50,15 @@ pub trait WildcardMatching: AsRef<str> {
 	/// wm = Wildcard Matching
 	/// cs = Case Sensitive
 	#[inline]
-	fn iswmcs(&self, pattern: &str) -> bool {
-		let build_regexp = regex::escape(pattern)
-			.replace(r"\?", ".")
-			.replace(r"\*", ".*");
+	fn iswmcs(&self, pattern: &str) -> bool
+	{
+		let build_regexp = regex::escape(pattern).replace(r"\?", ".").replace(r"\*", ".*");
 
 		let regexp = regex::RegexBuilder::new(&build_regexp)
 			.case_insensitive(false)
 			.build()
-			.unwrap();
+			.unwrap()
+		;
 
 		regexp.is_match(self.as_ref())
 	}
@@ -73,15 +74,15 @@ pub trait WildcardMatching: AsRef<str> {
 	///
 	/// wm = Wildcard Matching
 	#[inline]
-	fn wildcard_match<'a>(&'a self, pattern: &str) -> Option<&'a str> {
-		let build_regexp = regex::escape(pattern)
-			.replace(r"\?", ".")
-			.replace(r"\*", ".*");
+	fn wildcard_match<'a>(&'a self, pattern: &str) -> Option<&'a str>
+	{
+		let build_regexp = regex::escape(pattern).replace(r"\?", ".").replace(r"\*", ".*");
 
 		let regexp = regex::RegexBuilder::new(&build_regexp)
 			.case_insensitive(true)
 			.build()
-			.unwrap();
+			.unwrap()
+		;
 
 		regexp
 			.captures(self.as_ref())
@@ -96,18 +97,15 @@ pub trait WildcardMatching: AsRef<str> {
 	///   - '*' : correspond à aucun caractère ou plusieurs caractères,
 	///     n'importe lesquels.
 	///   - '?' : correspond à un seul caractère, n'importe lequel.
-	fn wildcard_match_case_sensitive<'a>(
-		&'a self,
-		pattern: &str,
-	) -> Option<&'a str> {
-		let build_regexp = regex::escape(pattern)
-			.replace(r"\?", ".")
-			.replace(r"\*", ".*");
+	fn wildcard_match_case_sensitive<'a>(&'a self, pattern: &str) -> Option<&'a str>
+	{
+		let build_regexp = regex::escape(pattern).replace(r"\?", ".").replace(r"\*", ".*");
 
 		let regexp = regex::RegexBuilder::new(&build_regexp)
 			.case_insensitive(false)
 			.build()
-			.unwrap();
+			.unwrap()
+		;
 
 		regexp
 			.captures(self.as_ref())
